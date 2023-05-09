@@ -31,7 +31,7 @@ export const Form = () => {
     })
   }
   return (
-    <form onSubmit={handleSubmit} className='p-8 space-y-6 border border-white/10 w-full'>
+    <form onSubmit={handleSubmit} className='p-8 space-y-6 border border-white/10 w-full max-w-sm'>
       <Input
         name='email'
         id='email'
