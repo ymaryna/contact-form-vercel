@@ -5,6 +5,10 @@ export async function POST (request: Request) {
 
   if (name == null || email == null || message == null) {
     return new Response('Please provide all fields.', { status: 400 })
+  } else if (name === '' || email === '' || message === '') {
+    return new Response('Please provide all fields.', { status: 400 })
+  } else if (typeof name !== 'string' || typeof message !== 'string') {
+    return new Response('Please provide all fields.', { status: 400 })
   }
 
   const uuid = crypto.randomUUID() // genera un id único

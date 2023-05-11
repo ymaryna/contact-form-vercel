@@ -13,8 +13,6 @@ export const FormPostgres = () => {
     const formData = new FormData(form)
     const { email, name, message } = Object.fromEntries(formData.entries())
 
-    console.log(email, name, message)
-
     // llamamos a la api
     fetch('api/postgres-send-message', {
       method: 'POST',
@@ -38,6 +36,7 @@ export const FormPostgres = () => {
         label='Tu Email:'
         type='email'
         placeholder='example@email.com'
+        pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
       />
 
       <Input

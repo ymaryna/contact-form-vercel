@@ -13,8 +13,6 @@ export const Form = () => {
     const formData = new FormData(form)
     const { email, name, message } = Object.fromEntries(formData.entries())
 
-    console.log(email, name, message)
-
     // llamamos a la api
     fetch('api/kv-send-message', {
       method: 'POST',
@@ -22,10 +20,14 @@ export const Form = () => {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(() => {
-      toast.success('Mensaje enviado con éxito')
-      form.reset()
-      void confetti()
+    }).then((response) => {
+      if (response.status === 200) {
+        toast.success('Mensaje enviado con éxito')
+        form.reset()
+        void confetti()
+      } else {
+        toast.error('Hubo un error al enviar el mensaje')
+      }
     }).catch(() => {
       toast.error('Hubo un error al enviar el mensaje')
     })
@@ -38,6 +40,7 @@ export const Form = () => {
         label='Tu Email:'
         type='email'
         placeholder='example@email.com'
+        pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
       />
 
       <Input
